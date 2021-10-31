@@ -1,5 +1,6 @@
 class CustomerController < ApplicationController
     def index
+        authorize Customer
         @customers = Customer.all
     end
 
@@ -13,6 +14,7 @@ class CustomerController < ApplicationController
     end
 
     def show
+        authorize Customer
         @customer = Customer.where(id: params[:id]).first
     end
     

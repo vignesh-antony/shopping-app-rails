@@ -10,4 +10,10 @@ class Customer
     field :contact_number, type: String
     field :address, type: Hash
 
+    scope :filter_by_contact_number, -> { where(:contact_number.ne => nil)}
+
+    def is_valid_customer?
+        first_name.present? and email.present?
+    end
+
 end
