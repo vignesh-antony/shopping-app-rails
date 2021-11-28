@@ -6,10 +6,11 @@ class CustomerController < ApplicationController
 
     def create
         @customer = Customer.new(verify_params)
-        raise Exception, "Customer not saved" unless @customer.save!
-        render json: { 
-            message: "User successfully created", 
-            user_id_created: @customer.id, 
+        raise StandardError, 'Customer not saved' unless @customer.save!
+
+        render json: {
+            message: 'User successfully created',
+            user_id_created: @customer.id
         }, status: :ok
     end
 
@@ -20,14 +21,16 @@ class CustomerController < ApplicationController
     
     def update
         @customer = Customer.find(params[:id])
-        raise CustomError::UnprocessableEntity, @customer.errors.full_messages unless @customer.update_attributes(verify_params)
+        raise CustomError::UnprocessableEntity, @customer.errors.full_messages unless @customer.update(verify_params)
+
         render :show
     end
     
     def destroy
         @customer = Customer.find(params[:id])
-        raise Exception, @customer.errors.full_messages unless @customer.destroy
-        render json: { message: "User deleted successfully" }, status: :ok
+        raise StandardError, @customer.errors.full_messages unless @customer.destroy
+
+        render json: { message: 'User deleted successfully' }, status: :ok
     end
 
     private
