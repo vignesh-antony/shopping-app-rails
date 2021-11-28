@@ -1,7 +1,7 @@
 class CustomerPolicy < ApplicationPolicy
-    [:index, :create, :show, :update, :destroy].each do |action|
-        define_method "#{action}?" do
-            user.is_valid_customer?
-        end
+  %i[index create show update destroy].each do |action|
+    define_method "#{action}?" do
+      user.is_valid_customer?
     end
+  end
 end

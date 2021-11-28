@@ -9,4 +9,5 @@ class Product
     field :product_prize, type: Float
     field :product_stock, type: Integer
 
+    has_many :orders
 end

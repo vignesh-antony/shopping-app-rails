@@ -3,7 +3,7 @@ module CustomError
         def initialize(message)
             super(message)
         end
-        
+
         def status_code
             400
         end
@@ -12,9 +12,9 @@ module CustomError
         def initialize(message)
             super(message)
         end
-        
+
         def status_code
             422
         end
-    end 
+    end
 end
